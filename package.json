@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Example code for Head First Design Pattern",
   "author": "Naoki Sawada",
+  "licence": "MIT",
   "scripts": {
     "lint": "eslint --ext .ts ."
   },
