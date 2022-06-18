@@ -153,6 +153,22 @@ export class SeelingFanOffCommand extends SeelingFanCommandBase {
   }
 }
 
+export class MacroCommand implements Command {
+  private commands: Command[];
+
+  constructor(commands: Command[]) {
+    this.commands = commands;
+  }
+
+  execute(): void {
+    this.commands.forEach((cmd) => cmd.execute());
+  }
+
+  undo(): void {
+    this.commands.forEach((cmd) => cmd.undo());
+  }
+}
+
 export class NoCommand implements Command {
   constructor() {}
 

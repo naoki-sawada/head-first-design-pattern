@@ -2,6 +2,7 @@ import { CeilingFan } from "./CeilingFan";
 import {
   LightOffCommand,
   LightOnCommand,
+  MacroCommand,
   SeelingFanHighCommand,
   SeelingFanLowCommand,
   SeelingFanMediumCommand,
@@ -66,6 +67,44 @@ function fan(): void {
   remote.undoButtonWasPushed();
 }
 
+function party() {
+  const livingRoomLight = new Light("living room");
+  const kitchenRoomLight = new Light("kitchen room");
+  const stereo = new Stereo("living room stereo");
+  const ceilingFan = new CeilingFan("ceiling fan");
+
+  const livingRoomLightOn = new LightOnCommand(livingRoomLight);
+  const livingRoomLightOff = new LightOffCommand(livingRoomLight);
+  const kitchenRoomLightOn = new LightOnCommand(kitchenRoomLight);
+  const kitchenRoomLightOff = new LightOffCommand(kitchenRoomLight);
+  const stereoOnCommand = new StereoOnWithDCCommand(stereo);
+  const stereoOffCommand = new StereoOffWithDCCommand(stereo);
+  const ceilingFanHighCommand = new SeelingFanHighCommand(ceilingFan);
+  const ceilingFanOffCommand = new SeelingFanOffCommand(ceilingFan);
+
+  const partyOn = [
+    livingRoomLightOn,
+    kitchenRoomLightOn,
+    ceilingFanHighCommand,
+    stereoOnCommand,
+  ];
+  const partyOff = [
+    livingRoomLightOff,
+    kitchenRoomLightOff,
+    ceilingFanOffCommand,
+    stereoOffCommand,
+  ];
+  const partyOnMacro = new MacroCommand(partyOn);
+  const partyOffMacro = new MacroCommand(partyOff);
+
+  const remote = new RemoteControl();
+  remote.setCommand(0, partyOnMacro, partyOffMacro);
+
+  remote.onButtonWasPushed(0);
+  remote.offButtonWasPushed(0);
+}
+
 // simple();
 // multi();
-fan();
+// fan();
+party();
