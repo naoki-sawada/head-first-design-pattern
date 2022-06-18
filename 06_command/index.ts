@@ -36,6 +36,7 @@ function multi(): void {
   for (let i = 0; i < 3; i++) {
     remote.onButtonWasPushed(i);
     remote.offButtonWasPushed(i);
+    remote.undoButtonWasPushed();
   }
 }
 

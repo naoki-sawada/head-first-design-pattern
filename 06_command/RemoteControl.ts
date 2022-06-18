@@ -3,6 +3,7 @@ import { Command, NoCommand } from "./Command";
 export class RemoteControl {
   private onCommands: Command[];
   private offCommands: Command[];
+  private undoCommand: Command;
 
   constructor() {
     this.onCommands = [];
@@ -12,6 +13,7 @@ export class RemoteControl {
       this.onCommands[i] = noCommand;
       this.offCommands[i] = noCommand;
     }
+    this.undoCommand = noCommand;
   }
 
   public setCommand(
@@ -24,10 +26,18 @@ export class RemoteControl {
   }
 
   public onButtonWasPushed(index: number): void {
-    this.onCommands[index].execute();
+    const command = this.onCommands[index];
+    command.execute();
+    this.undoCommand = command;
   }
 
   public offButtonWasPushed(index: number): void {
-    this.offCommands[index].execute();
+    const command = this.offCommands[index];
+    command.execute();
+    this.undoCommand = command;
+  }
+
+  public undoButtonWasPushed(): void {
+    this.undoCommand.undo();
   }
 }
