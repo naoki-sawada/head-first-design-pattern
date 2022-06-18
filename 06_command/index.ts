@@ -1,6 +1,11 @@
+import { CeilingFan } from "./CeilingFan";
 import {
   LightOffCommand,
   LightOnCommand,
+  SeelingFanHighCommand,
+  SeelingFanLowCommand,
+  SeelingFanMediumCommand,
+  SeelingFanOffCommand,
   StereoOffWithDCCommand,
   StereoOnWithDCCommand,
 } from "./Command";
@@ -40,5 +45,27 @@ function multi(): void {
   }
 }
 
-simple();
-multi();
+function fan(): void {
+  const ceilingFan = new CeilingFan("ceiling fan");
+
+  const ceilingFanHighCommand = new SeelingFanHighCommand(ceilingFan);
+  const ceilingFanMediumCommand = new SeelingFanMediumCommand(ceilingFan);
+  const ceilingFanLowCommand = new SeelingFanLowCommand(ceilingFan);
+  const ceilingFanOffCommand = new SeelingFanOffCommand(ceilingFan);
+
+  const remote = new RemoteControl();
+  remote.setCommand(0, ceilingFanHighCommand, ceilingFanOffCommand);
+  remote.setCommand(1, ceilingFanMediumCommand, ceilingFanOffCommand);
+  remote.setCommand(2, ceilingFanLowCommand, ceilingFanOffCommand);
+
+  remote.onButtonWasPushed(0);
+  remote.offButtonWasPushed(0);
+  remote.undoButtonWasPushed();
+
+  remote.onButtonWasPushed(1);
+  remote.undoButtonWasPushed();
+}
+
+// simple();
+// multi();
+fan();
