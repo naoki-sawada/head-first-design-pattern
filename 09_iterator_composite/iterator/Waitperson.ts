@@ -1,33 +1,18 @@
-import { CafeMenu } from "./CafeMenu";
-import { DinerMenu } from "./DinerMenu";
+import { Menu } from "./Menu";
 import { MenuItem } from "./MenuItem";
-import { PancakeHouseMenu } from "./PancakeHouseMenu";
 
 export class Waitperson {
-  private pancakeHouseMenu: PancakeHouseMenu;
-  private cafeMenu: CafeMenu;
-  private dinerMenu: DinerMenu;
+  private menus: Menu[];
 
-  constructor(
-    pancakeHouseMenu: PancakeHouseMenu,
-    cafeMenu: CafeMenu,
-    dinerMenu: DinerMenu
-  ) {
-    this.pancakeHouseMenu = pancakeHouseMenu;
-    this.cafeMenu = cafeMenu;
-    this.dinerMenu = dinerMenu;
+  constructor(menus: Menu[]) {
+    this.menus = menus;
   }
 
   public printMenuAll() {
-    const pancakeIterator = this.pancakeHouseMenu.createIterator();
-    const cafeIterator = this.cafeMenu.createIterator();
-    const dinerIterator = this.dinerMenu.createIterator();
-    console.log("-- pancake menu --");
-    this.printMenu(pancakeIterator);
-    console.log("-- cafe menu --");
-    this.printMenu(cafeIterator);
-    console.log("-- dinner menu --");
-    this.printMenu(dinerIterator);
+    for (const menu of this.menus) {
+      const iterator = menu.createIterator();
+      this.printMenu(iterator);
+    }
   }
 
   private printMenu(iterator: IterableIterator<MenuItem>): void {
