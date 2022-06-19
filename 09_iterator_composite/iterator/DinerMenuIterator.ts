@@ -1,7 +1,6 @@
 import { MenuItem } from "./MenuItem";
-import { Iterator } from "./Iterator";
 
-export class DinerMenuIterator implements Iterator {
+export class DinerMenuIterator implements IterableIterator<MenuItem> {
   private items: MenuItem[];
   private position: number;
 
@@ -10,13 +9,21 @@ export class DinerMenuIterator implements Iterator {
     this.position = 0;
   }
 
-  public next(): MenuItem {
+  public next(): IteratorResult<MenuItem> {
+    return { done: !this.hasNext(), value: this.nextItem() };
+  }
+
+  public [Symbol.iterator](): IterableIterator<MenuItem> {
+    return this;
+  }
+
+  private nextItem(): MenuItem {
     const menuItem = this.items[this.position];
     this.position += 1;
     return menuItem;
   }
 
-  public hasNext(): boolean {
+  private hasNext(): boolean {
     if (
       this.position >= this.items.length ||
       this.items[this.position] === null

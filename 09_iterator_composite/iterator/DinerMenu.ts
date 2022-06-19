@@ -1,5 +1,4 @@
 import { MenuItem } from "./MenuItem";
-import { Iterator } from "./Iterator";
 import { DinerMenuIterator } from "./DinerMenuIterator";
 
 export class DinerMenu {
@@ -43,7 +42,7 @@ export class DinerMenu {
     this.menuItems.push(menuItem);
   }
 
-  public createIterator(): Iterator {
+  public createIterator(): IterableIterator<MenuItem> {
     return new DinerMenuIterator(this.menuItems);
   }
 }

@@ -1,6 +1,5 @@
 import List from "./List";
 import { MenuItem } from "./MenuItem";
-import { Iterator } from "./Iterator";
 import { PancakeHouseMenuIterator } from "./PancakeHouseMenuIterator";
 
 export class PancakeHouseMenu {
@@ -40,7 +39,7 @@ export class PancakeHouseMenu {
     this.menuItems.addItem(menuItem);
   }
 
-  public createIterator(): Iterator {
+  public createIterator(): IterableIterator<MenuItem> {
     return new PancakeHouseMenuIterator(this.menuItems);
   }
 }
