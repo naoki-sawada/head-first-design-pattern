@@ -1,8 +1,9 @@
 import List from "./List";
+import { Menu } from "./Menu";
 import { MenuItem } from "./MenuItem";
 import { PancakeHouseMenuIterator } from "./PancakeHouseMenuIterator";
 
-export class PancakeHouseMenu {
+export class PancakeHouseMenu implements Menu {
   private menuItems: List<MenuItem>;
 
   constructor() {

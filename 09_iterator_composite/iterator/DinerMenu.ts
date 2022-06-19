@@ -1,7 +1,8 @@
 import { MenuItem } from "./MenuItem";
 import { DinerMenuIterator } from "./DinerMenuIterator";
+import { Menu } from "./Menu";
 
-export class DinerMenu {
+export class DinerMenu implements Menu {
   public static MAX_ITEMS = 6;
   private menuItems: MenuItem[];
 
