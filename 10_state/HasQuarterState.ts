@@ -19,6 +19,13 @@ export class HasQuarterState implements State {
 
   turnCrank(): void {
     console.log("You turned the crank");
+
+    const winner = Math.floor(Math.random() * 10);
+    if (winner === 0 && this.gumballMachine.getCount() > 1) {
+      this.gumballMachine.setState(this.gumballMachine.winnerState);
+      return;
+    }
+
     this.gumballMachine.setState(this.gumballMachine.soldState);
   }
 
