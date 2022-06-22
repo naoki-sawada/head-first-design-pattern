@@ -1,23 +1,17 @@
+import { BaseState } from "./BaseState";
 import { GumballMachine } from "./GumballMachine";
-import { State } from "./State";
 
-export class HasQuarterState implements State {
-  private gumballMachine: GumballMachine;
-
+export class HasQuarterState extends BaseState {
   constructor(gumballMachine: GumballMachine) {
-    this.gumballMachine = gumballMachine;
+    super(gumballMachine);
   }
 
-  insertQuarter(): void {
-    console.log("You can't insert quarters again");
-  }
-
-  ejectQuarter(): void {
+  public override ejectQuarter(): void {
     console.log("Refunded");
     this.gumballMachine.setState(this.gumballMachine.noQuarterState);
   }
 
-  turnCrank(): void {
+  public override turnCrank(): void {
     console.log("You turned the crank");
 
     const winner = Math.floor(Math.random() * 10);
@@ -27,9 +21,5 @@ export class HasQuarterState implements State {
     }
 
     this.gumballMachine.setState(this.gumballMachine.soldState);
-  }
-
-  dispense(): void {
-    console.log("You can't put out a gumball");
   }
 }

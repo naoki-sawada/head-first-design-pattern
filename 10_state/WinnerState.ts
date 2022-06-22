@@ -1,23 +1,9 @@
+import { BaseState } from "./BaseState";
 import { GumballMachine } from "./GumballMachine";
-import { State } from "./State";
 
-export class WinnerState implements State {
-  private gumballMachine: GumballMachine;
-
+export class WinnerState extends BaseState {
   constructor(gumballMachine: GumballMachine) {
-    this.gumballMachine = gumballMachine;
-  }
-
-  insertQuarter(): void {
-    console.log("error");
-  }
-
-  ejectQuarter(): void {
-    console.log("error");
-  }
-
-  turnCrank(): void {
-    console.log("error");
+    super(gumballMachine);
   }
 
   dispense(): void {
