@@ -21,3 +21,7 @@ gumballMachine.insertQuarter();
 gumballMachine.turnCrank(); // 0
 gumballMachine.insertQuarter();
 gumballMachine.turnCrank(); // sold out
+
+gumballMachine.refill(1);
+gumballMachine.insertQuarter();
+gumballMachine.turnCrank();

@@ -18,4 +18,7 @@ export class BaseState implements State {
   public dispense(): void {
     console.log("Not allowed to dispense");
   }
+  public refill(): void {
+    console.log("Not allowed to refill");
+  }
 }

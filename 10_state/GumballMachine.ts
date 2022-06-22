@@ -55,4 +55,16 @@ export class GumballMachine {
     if (this.count <= 0) return;
     this.count -= 1;
   }
+
+  public refill(numberGumBalls: number): void {
+    this.setGumballs(numberGumBalls);
+    this.state.refill();
+  }
+
+  private setGumballs(numberGumBalls: number): void {
+    if (numberGumBalls <= 0) {
+      throw new Error("Invalid number of gumballs");
+    }
+    this.count = numberGumBalls;
+  }
 }
