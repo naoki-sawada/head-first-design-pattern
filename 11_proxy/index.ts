@@ -1,7 +1,11 @@
-import { GumballMachine } from "./GumballMachine";
+import { GumballMachineClient } from "./GumballMachineClient";
 import { GumballMonitor } from "./GumballMonitor";
 
-const machine = new GumballMachine("Seattle", 5);
+const machine = new GumballMachineClient("http://localhost:3000");
 const monitor = new GumballMonitor(machine);
 
-monitor.report();
+try {
+  monitor.report();
+} catch (e) {
+  console.error(e);
+}
